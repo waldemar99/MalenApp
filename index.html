@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MalenApp</title>
+  </head>
+  <body>
+    <div>
+      <img
+        id="img_1573"
+        src="./dalle256.png"
+        alt="KI MADE"
+        srcset=""
+        style="width: 70%"
+      />
+    </div>
+    <canvas id="canvas" style="display: none"></canvas>
+    <script>
+      const img_dalle256 = document.getElementById("img_1573");
+      document.addEventListener("click", (e) => {
+        console.log(e.pageX);
+        console.log(e.pageY);
+
+        // Function to get pixel information at a specific coordinate
+        function getPixelInfo(x, y) {
+          const pixelData = canvas
+            .getContext("2d")
+            .getImageData(e.pageX, e.pageY, 1, 1).data;
+          const pixelColor = `rgb(${pixelData[0]},${pixelData[1]},${pixelData[2]},${pixelData[3]})`;
+          console.log(pixelData, pixelColor);
+          // Example: Get pixel info at coordinates (100, 100)
+        }
+        getPixelInfo(100, 100);
+
+        //  Function to set pixel colour
+        function setPixelColour() {
+          const setPixel = canvas.getContext("2d").set;
+        }
+      });
+
+      img_dalle256.onload = () => {
+        // Set the canvas dimensions to match the image
+        canvas.width = img_dalle256.width;
+        canvas.height = img_dalle256.height;
+
+        // Draw the image on the canvas
+        canvas.getContext("2d").drawImage(img_dalle256, 0, 0);
+      };
+    </script>
+  </body>
+</html>
